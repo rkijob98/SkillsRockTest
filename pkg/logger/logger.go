@@ -12,7 +12,6 @@ var (
 	once sync.Once
 )
 
-// Init инициализирует логгер (Singleton)
 func Init(env string) *zap.Logger {
 	once.Do(func() {
 		var config zap.Config
@@ -24,7 +23,6 @@ func Init(env string) *zap.Logger {
 			config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
 		}
 
-		// Настройка вывода в файл (опционально)
 		//config.OutputPaths = []string{"stdout", "./logs/app.log"}
 		//config.ErrorOutputPaths = []string{"stderr", "./logs/error.log"}
 
@@ -38,7 +36,6 @@ func Init(env string) *zap.Logger {
 	return log
 }
 
-// Get возвращает инстанс логгера
 func Get() *zap.Logger {
 	if log == nil {
 		panic("Logger not initialized. Call Init() first.")

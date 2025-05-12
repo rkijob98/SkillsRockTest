@@ -29,7 +29,6 @@ func (uc *taskUseCase) CreateTask(ctx context.Context, req *dtos.CreateTaskReque
 		zap.Time("due_date", req.DueDate),
 	)
 
-	// Валидация
 	if req.Title == "" {
 		uc.log.Warn("Validation failed: empty title")
 		return nil, errors.New("title is required")
@@ -98,7 +97,6 @@ func (uc *taskUseCase) UpdateTask(ctx context.Context, id string, req *dtos.Upda
 		return nil, fmt.Errorf("task not found: %w", err)
 	}
 
-	// Применение изменений
 	if req.Title != nil {
 		task.Title = *req.Title
 	}

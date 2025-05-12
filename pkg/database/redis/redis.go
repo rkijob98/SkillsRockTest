@@ -25,7 +25,6 @@ func New(cfg *config.Config) *Client {
 
 	client := redis.NewClient(opt)
 
-	// Проверка подключения
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 

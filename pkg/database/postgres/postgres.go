@@ -35,7 +35,6 @@ func NewPostgres(cfg *config.Config) *sql.DB {
 		)
 	}
 
-	// Проверяем подключение
 	err = db.Ping()
 	if err != nil {
 		logger.Get().Fatal("Failed to ping Postgres",

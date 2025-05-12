@@ -5,7 +5,7 @@ import (
 )
 
 func (h *TaskHandler) TaskRoutes(router *gin.RouterGroup, auth gin.HandlerFunc) {
-	// Группа защищенных роутов для задач
+	// Группа защиущенных роутов для задач
 	taskGroup := router.Group("/tasks").Use(auth)
 	{
 		taskGroup.POST("", h.CreateTask)

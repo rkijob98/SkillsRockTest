@@ -6,7 +6,6 @@ import (
 )
 
 func (h *AuthHandler) UserRoutes(router *gin.RouterGroup) {
-	// Группа публичных роутов (не требующих аутентификации)
 	public := router.Group("/auth")
 	{
 		public.POST("/register", h.Register)

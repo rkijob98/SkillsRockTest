@@ -31,14 +31,12 @@ func (h *TaskHandler) CreateTask(c *gin.Context) {
 		return
 	}
 
-	// Получаем user_id как int64
 	userID, exists := c.Get("user_id")
 	if !exists {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
 		return
 	}
 
-	// Преобразуем к нужному типу
 	uid, ok := userID.(int64)
 	if !ok {
 		h.log.Error("Invalid user_id type in context")
@@ -46,7 +44,6 @@ func (h *TaskHandler) CreateTask(c *gin.Context) {
 		return
 	}
 
-	// Передаем в usecase (если нужно)
 	req.UserID = uid
 
 	task, err := h.uc.CreateTask(c.Request.Context(), &req)

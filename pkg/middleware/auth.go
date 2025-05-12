@@ -13,7 +13,6 @@ func AuthMiddleware(cfg *config.Config, log *zap.Logger) gin.HandlerFunc {
 		tokenString := c.GetHeader("Authorization")
 		log.Debug("Authorization header", zap.String("header", tokenString))
 
-		// Извлекаем токен
 		if len(tokenString) > 7 && strings.HasPrefix(tokenString, "Bearer ") {
 			tokenString = tokenString[7:]
 		} else {
@@ -24,7 +23,6 @@ func AuthMiddleware(cfg *config.Config, log *zap.Logger) gin.HandlerFunc {
 
 		log.Debug("Token extracted", zap.String("token", tokenString))
 
-		// Парсим токен
 		claims, err := jwt.ParseToken(tokenString, cfg)
 		if err != nil {
 			log.Error("Token validation failed",
